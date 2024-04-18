@@ -17,11 +17,21 @@ const addRoommateQuery = async (req, res) => {
             debe: 0,
             recibe: 0
         };
-        const roommateJson = JSON.parse(fs.readFileSync('data/roommates.json', 'utf8'));
+        const roommateJson = await JSON.parse(fs.readFileSync('data/roommates.json', 'utf8'));
         roommateJson.roommates.push(usuario)
         fs.writeFileSync('data/roommates.json', JSON.stringify(roommateJson));
     } catch (error) {
         console.log(error.message)
+    }
+};
+
+const getRoommatesQuery = async (req, res) => {
+    try {
+        const roommateJson = await JSON.parse(
+            fs.readFileSync("./data/roommates.json", "utf8"));
+        return roommateJson;
+    } catch (error) {
+        console.log(error)
     }
 };
 
@@ -30,5 +40,6 @@ const addRoommateQuery = async (req, res) => {
 
 
 export {
-    addRoommateQuery
+    addRoommateQuery,
+    getRoommatesQuery
 }

@@ -1,6 +1,6 @@
 import path from "path";
 const __dirname = import.meta.dirname;
-import { addRoommateQuery } from "../queries/roommates.js";
+import { addRoommateQuery, getRoommatesQuery } from "../queries/roommates.js";
 
 
 const home = (req, res) => {
@@ -14,11 +14,20 @@ const addRoommate = async (req, res) => {
     } catch (error) {
         console.log(error.message)
     }
-    
+};
+
+const getRoommates = async (req, res) => {
+    try {
+        const results = await getRoommatesQuery();
+        res.json(results)
+    } catch (error) {
+        console.log(error.message);
+    }
 }
 
 
 export {
     home,
-    addRoommate
+    addRoommate,
+    getRoommates
 }
