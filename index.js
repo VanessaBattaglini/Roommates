@@ -1,7 +1,7 @@
 import express from 'express';
 const app = express();
 const PORT = process.env.PORT || 3000;
-import router from 'roomRouter';
+import roomRouter from './routes/roomRouter.js';
 
 //Middlewares
 app.use('/', roomRouter);
