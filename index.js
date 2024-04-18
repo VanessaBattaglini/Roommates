@@ -5,8 +5,10 @@ import roomRouter from './routes/roomRouter.js';
 import gastosRouter from './routes/gastosRouter.js'
 
 //Middlewares
+app.use(express.json());
 app.use('/', roomRouter);
 app.use('/', gastosRouter);
+
 
 
 
