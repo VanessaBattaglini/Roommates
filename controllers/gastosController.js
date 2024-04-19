@@ -1,4 +1,4 @@
-import { getGastosQuery, addGastosQuery } from "../queries/gastos.js";
+import { getGastosQuery, addGastosQuery, deleteGastosQuery } from "../queries/gastos.js";
 
 const getGastos = async (req, res) => {
   try {
@@ -17,9 +17,21 @@ const addGastos = async (req, res) => {
   } catch (error) {
     console.log(error.message)
   }
+};
+
+const deleteGastos = async (req, res) => {
+  try {
+    const { id } = req.params
+    const results = await deleteGastosQuery(id)
+    console.log(results)
+    res.send("gastos eliminado");
+  } catch (error) {
+    console.log(error.message);
+  }
 }
 
 export {
   getGastos,
-  addGastos
+  addGastos,
+  deleteGastos
 }

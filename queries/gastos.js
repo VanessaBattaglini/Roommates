@@ -1,4 +1,5 @@
 import fs from "fs";
+import { stringify } from "querystring";
 import { v4 as uuidv4 } from "uuid";
 
 const getGastosQuery = async (req, res) => {
@@ -24,9 +25,20 @@ const addGastosQuery = async (gasto) => {
     } catch (error) {
         console.log(error.message)
     }
-}
+};
+const deleteGastosQuery = async (id) => {
+    try {
+        let gastosJson = await fs.readFileSync("./data/gastos.json", "utf8");
+        let { gastos } = JSON.parse(gastosJson)
+        gastos = gastos.filter(results => results.id !== id);
+        await fs.writeFileSync('./data/gastos.json', JSON.stringify({gastos}))
+    } catch (error) {
+        console.log(error.message);
+    }
+};
 
 export {
     getGastosQuery,
-    addGastosQuery
+    addGastosQuery,
+    deleteGastosQuery
 }

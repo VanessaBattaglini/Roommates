@@ -1,10 +1,12 @@
 import express from "express";
 const router = express.Router();
-import { getGastos, addGastos } from "../controllers/gastosController.js";
+import { getGastos, addGastos, deleteGastos } from "../controllers/gastosController.js";
 
 router.get('/gastos', getGastos);
 
 router.post('/gasto', addGastos);
+
+router.delete('/gasto', deleteGastos);
 
 
 

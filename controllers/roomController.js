@@ -10,7 +10,7 @@ const home = (req, res) => {
 const addRoommate = async (req, res) => {
     try {
         const result = await addRoommateQuery();
-        res.json(result);
+        res.redirect('/');
     } catch (error) {
         console.log(error.message)
     }
